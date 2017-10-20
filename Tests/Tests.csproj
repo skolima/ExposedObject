@@ -1,60 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{2467EDA2-6977-4223-8F31-3ED726777D22}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tests</RootNamespace>
-    <AssemblyName>Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <TargetFrameworks>net461</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
+    <Folder Include="Properties\" />
   </ItemGroup>
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ClassWithHiddenMethodsTest.cs" />
-    <Compile Include="ClassWithInheritedPrivateMembersTest.cs" />
-    <Compile Include="OverloadedMethodsClassTest.cs" />
-    <Compile Include="GenericMethodClassTest.cs" />
-    <Compile Include="StaticClassTest.cs" />
-    <Compile Include="HiddenClassTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ExposedObject\ExposedObject.csproj">
-      <Project>{04CE6B9D-FEC0-424A-B0BB-8A4D1E48F73E}</Project>
-      <Name>ExposedObject</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TestSubjects\TestSubjects.csproj">
-      <Project>{4F9CC970-A5B4-455B-9733-B4D8605DCAAE}</Project>
-      <Name>TestSubjects</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\ExposedObject\ExposedObject.csproj" />
+    <ProjectReference Include="..\TestSubjects\TestSubjects.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="xunit">
@@ -63,13 +19,9 @@
     <PackageReference Include="xunit.analyzers">
       <Version>0.7.0</Version>
     </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
 </Project>
