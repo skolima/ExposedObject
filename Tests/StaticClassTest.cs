@@ -27,41 +27,40 @@ using System;
 
 using ExposedObject;
 
-using NUnit.Framework;
+using Xunit;
 
 namespace Tests
 {
-    [TestFixture]
     public class StaticClassTest
     {
-        [Test]
+        [Fact]
         public void FieldTest()
         {
             dynamic exposed = Exposed.From(Type.GetType("TestSubjects.StaticClass, TestSubjects"));
             string testValue = exposed.testValue;
-            Assert.AreEqual("testValue", testValue);
+            Assert.Equal("testValue", testValue);
 
             exposed.testValue = "TestValue";
             testValue = exposed.testValue;
-            Assert.AreEqual("TestValue", testValue);
+            Assert.Equal("TestValue", testValue);
         }
 
-        [Test]
+        [Fact]
         public void MethodTest()
         {
             dynamic exposed = Exposed.From(Type.GetType("TestSubjects.StaticClass, TestSubjects"));
             decimal convertValue = exposed.ConvertValue(8);
 
-            Assert.AreEqual(convertValue, exposed.Value);
+            Assert.Equal(convertValue, exposed.Value);
         }
 
-        [Test]
+        [Fact]
         public void PropertyTest()
         {
             dynamic exposed = Exposed.From(Type.GetType("TestSubjects.StaticClass, TestSubjects"));
             exposed.Value = 9;
             decimal count = exposed.Value;
-            Assert.AreEqual(9, count);
+            Assert.Equal(9, count);
         }
     }
 }

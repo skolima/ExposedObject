@@ -29,59 +29,57 @@ using System.Threading;
 
 using ExposedObject;
 
-using NUnit.Framework;
-
 using TestSubjects;
+
+using Xunit;
 
 namespace Tests
 {
-    [TestFixture]
     public class ClassWithHiddenMethodsTest
     {
-        [Test]
+        [Fact]
         public void FieldTest()
         {
             dynamic exposed = Exposed.From(new ClassWithHiddenMethods());
             string password = exposed.password;
-            Assert.IsNull(password);
+            Assert.Null(password);
 
             exposed.password = "TestValue";
             password = exposed.password;
-            Assert.AreEqual("TestValue", password);
+            Assert.Equal("TestValue", password);
         }
 
-        [Test]
+        [Fact]
         public void MethodTest()
         {
             dynamic exposed = Exposed.New(typeof(ClassWithHiddenMethods));
             string password = exposed.GeneratePassword(8);
 
-            Assert.AreEqual(password, exposed.Password);
+            Assert.Equal(password, exposed.Password);
         }
 
-        [Test]
+        [Fact]
         public void PropertyTest()
         {
             dynamic exposed = Exposed.From(new ClassWithHiddenMethods());
             int count = exposed.Count;
-            Assert.AreEqual(0, count);
+            Assert.Equal(0, count);
 
             exposed.Count = 9;
             count = exposed.Count;
-            Assert.AreEqual(9, count);
+            Assert.Equal(9, count);
         }
 
-        [Test]
+        [Fact]
         public void ReturnVoidMethodTest()
         {
             dynamic exposed = Exposed.From(new ClassWithHiddenMethods());
             exposed.SetPassword("new test password");
 
-            Assert.AreEqual("new test password", exposed.password);
+            Assert.Equal("new test password", exposed.password);
         }
 
-        [Test]
-        [Timeout(2000)]
+        [Fact]
         public void ThreadingSafetySimpleTest()
         {
             var results = new ConcurrentDictionary<int, bool>();
@@ -109,7 +107,7 @@ namespace Tests
                 threads[i].Join();
                 Assert.True(results[i]);
             }
-            Assert.AreEqual(threadsCount, results.Count);
+            Assert.Equal(threadsCount, results.Count);
         }
     }
 }

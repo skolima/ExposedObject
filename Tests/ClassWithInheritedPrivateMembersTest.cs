@@ -25,43 +25,42 @@
 //
 
 using ExposedObject;
-using NUnit.Framework;
 using TestSubjects;
+using Xunit;
 
 namespace Tests
 {
-    [TestFixture]
     public class ClassWithInheritedPrivateMembersTest
     {
-        [Test]
+        [Fact]
         public void PrivatePropertyTest()
         {
             dynamic exposed = Exposed.From(new ClassWithInheritedPrivateMembers());
             int count = exposed.Count;
-            Assert.AreEqual(0, count);
+            Assert.Equal(0, count);
             exposed.Count = 8;
             count = exposed.Count;
-            Assert.AreEqual(8, count);
+            Assert.Equal(8, count);
         }
 
-        [Test]
+        [Fact]
         public void PrivateMethodTest()
         {
             dynamic exposed = Exposed.From(new ClassWithInheritedPrivateMembers());
             exposed.SetPassword("test pass");
             string password = exposed.Password;
-            Assert.AreEqual("test pass", password);
+            Assert.Equal("test pass", password);
         }
 
-        [Test]
+        [Fact]
         public void PrivateFieldTest()
         {
             dynamic exposed = Exposed.From(new ClassWithInheritedPrivateMembers());
             int count = exposed._count;
-            Assert.AreEqual(0, count);
+            Assert.Equal(0, count);
             exposed._count = 8;
             count = exposed.Count;
-            Assert.AreEqual(8, count);
+            Assert.Equal(8, count);
         }
     }
 }

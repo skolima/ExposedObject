@@ -28,44 +28,43 @@ using System;
 
 using ExposedObject;
 
-using NUnit.Framework;
+using Xunit;
 
 namespace Tests
 {
-    [TestFixture]
     public class HiddenClassTest
     {
-        [Test]
+        [Fact]
         public void FieldTest()
         {
             dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
             string password = exposed.password;
-            Assert.IsNull(password);
+            Assert.Null(password);
 
             exposed.password = "TestValue";
             password = exposed.password;
-            Assert.AreEqual("TestValue", password);
+            Assert.Equal("TestValue", password);
         }
 
-        [Test]
+        [Fact]
         public void MethodTest()
         {
             dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
             string password = exposed.GeneratePassword(8);
 
-            Assert.AreEqual(password, exposed.Password);
+            Assert.Equal(password, exposed.Password);
         }
 
-        [Test]
+        [Fact]
         public void PropertyTest()
         {
             dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
             int count = exposed.Countz;
-            Assert.AreEqual(0, count);
+            Assert.Equal(0, count);
 
             exposed.Countz = 9;
             count = exposed.Countz;
-            Assert.AreEqual(9, count);
+            Assert.Equal(9, count);
         }
     }
 }

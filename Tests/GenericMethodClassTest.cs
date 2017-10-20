@@ -27,31 +27,27 @@ using System;
 
 using ExposedObject;
 
-using NUnit.Framework;
+using Xunit;
 
 namespace Tests
 {
-    [TestFixture]
-    [Ignore("Not working")]
     public class GenericMethodClassTest
     {
-        [Test]
+        [Fact(Skip = "Not working")]
         public void MethodTest()
         {
             dynamic exposed = Exposed.New(Type.GetType("TestSubjects.GenericMethodClass, TestSubjects"));
             string password = exposed.Mangle<string, int>("test", 8);
 
-            Assert.AreEqual("test8", password);
+            Assert.Equal("test8", password);
         }
 
-        [Test]
-        [ExpectedException(typeof(ArgumentException))]
+        [Fact(Skip = "Not working")]
         public void MismatchedMethodTest()
         {
             dynamic exposed = Exposed.New(Type.GetType("TestSubjects.GenericMethodClass, TestSubjects"));
-            string password = exposed.Mangle<int, int>("test", 8);
 
-            Assert.Fail("Mismatched generic parameters, invocation should fail.");
+            Assert.Throws<ArgumentException>(() => exposed.Mangle<int, int>("test", 8));
         }
     }
 }

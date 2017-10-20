@@ -27,26 +27,25 @@ using System;
 
 using ExposedObject;
 
-using NUnit.Framework;
+using Xunit;
 
 namespace Tests
 {
-    [TestFixture]
     public class OverloadedMethodsClassTest
     {
-        [Test]
+        [Fact]
         public void OverloadResolutionTest()
         {
             dynamic exposed = Exposed.New(Type.GetType("TestSubjects.OverloadedMethodsClass, TestSubjects"));
 
             string password = exposed.SuperMethod();
-            Assert.AreEqual("SuperMethod", password);
+            Assert.Equal("SuperMethod", password);
 
             password = exposed.SuperMethod(3);
-            Assert.AreEqual("SuperMethod_int", password);
+            Assert.Equal("SuperMethod_int", password);
 
             password = exposed.SuperMethod("string");
-            Assert.AreEqual("SuperMethod_string", password);
+            Assert.Equal("SuperMethod_string", password);
         }
     }
 }
