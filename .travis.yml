@@ -3,5 +3,5 @@ mono: none
 dist: trusty
 dotnet: 2.0.0
 script:
-  - dotnet build -c Release -f netstandard2.0
-  - dotnet test -c Release -f netstandard2.0 Tests/Tests.csproj
+  - dotnet build -c Release -f netcoreapp2.0
+  - dotnet test -c Release -f netcoreapp2.0 Tests/Tests.csproj
