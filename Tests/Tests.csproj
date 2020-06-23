@@ -3,12 +3,6 @@
     <TargetFrameworks>net461;netcoreapp2.0;netcoreapp3.1</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-  <PropertyGroup>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ExposedObject\ExposedObject.csproj" />
     <ProjectReference Include="..\TestSubjects\TestSubjects.csproj" />
   </ItemGroup>
