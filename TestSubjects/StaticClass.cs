@@ -27,7 +27,9 @@ namespace TestSubjects
 {
     class StaticClass
     {
+#pragma warning disable 414
         private static string testValue = "testValue";
+#pragma warning restore 414
 
         internal static decimal ConvertValue(int valueToConvert)
         {
