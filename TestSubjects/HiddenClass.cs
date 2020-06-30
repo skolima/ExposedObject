@@ -25,7 +25,9 @@
 
 namespace TestSubjects
 {
+#pragma warning disable CA1812 // Class is never instantiated
     class HiddenClass : ClassWithHiddenMethods
+#pragma warning restore CA1812 // Class is never instantiated
     {
         private int Countz { get; set; }
     }

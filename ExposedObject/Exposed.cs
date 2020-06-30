@@ -88,6 +88,11 @@ namespace ExposedObject
         /// </returns>
         public static dynamic From(object subject)
         {
+            if (subject == null)
+            {
+                throw new ArgumentNullException(nameof(subject));
+            }
+
             return new Exposed(subject);
         }
 

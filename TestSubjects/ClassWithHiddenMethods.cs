@@ -25,6 +25,7 @@
 //
 
 using System;
+using System.Globalization;
 
 namespace TestSubjects
 {
@@ -34,7 +35,9 @@ namespace TestSubjects
 
         private int Count { get { return _count; } set { _count = value; } }
 
+#pragma warning disable CA1051 // Do not declare visible instance fields
         protected string password;
+#pragma warning restore CA1051 // Do not declare visible instance fields
 
         protected string Password
         {
@@ -51,7 +54,7 @@ namespace TestSubjects
         protected string GeneratePassword(int seed)
         {
             var random = new Random(seed);
-            return password = random.Next().ToString();
+            return password = random.Next().ToString(CultureInfo.InvariantCulture);
         }
 
         private void SetPassword(string newPassword)

@@ -25,9 +25,13 @@
 
 namespace TestSubjects
 {
+#pragma warning disable CA1812 // Class is never instantiated
     class GenericMethodClass
+#pragma warning restore CA1812 // Class is never instantiated
     {
+#pragma warning disable CA1822 // Mark members as static
         private string Mangle<T1, T2>(T1 man, T2 gle)
+#pragma warning restore CA1822 // Mark members as static
         {
             return man.ToString() + gle;
         }

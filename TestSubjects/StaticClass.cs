@@ -28,7 +28,9 @@ namespace TestSubjects
     class StaticClass
     {
 #pragma warning disable 414
+#pragma warning disable CA1823 // Avoid unused private fields
         private static string testValue = "testValue";
+#pragma warning restore CA1823 // Avoid unused private fields
 #pragma warning restore 414
 
         internal static decimal ConvertValue(int valueToConvert)

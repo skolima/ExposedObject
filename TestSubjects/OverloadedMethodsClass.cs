@@ -25,19 +25,31 @@
 
 namespace TestSubjects
 {
+#pragma warning disable CA1812 // Class is never instantiated
     class OverloadedMethodsClass
+#pragma warning restore CA1812 // Class is never instantiated
     {
+#pragma warning disable CA1822 // Mark members as static
         public string SuperMethod()
+#pragma warning restore CA1822 // Mark members as static
         {
             return "SuperMethod";
         }
 
+#pragma warning disable CA1822 // Mark members as static
+#pragma warning disable CA1801 // Review unused parameters
         protected string SuperMethod(int var)
+#pragma warning restore CA1801 // Review unused parameters
+#pragma warning restore CA1822 // Mark members as static
         {
             return "SuperMethod_int";
         }
 
+#pragma warning disable CA1822 // Mark members as static
+#pragma warning disable CA1801 // Review unused parameters
         private string SuperMethod(string value)
+#pragma warning restore CA1801 // Review unused parameters
+#pragma warning restore CA1822 // Mark members as static
         {
             return "SuperMethod_string";
         }
