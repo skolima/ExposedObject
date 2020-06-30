@@ -39,7 +39,11 @@ namespace ExposedObject
         /// The <see langword="object"/> that is being exposed.
         /// <see langword="null"/> if static members of a <see cref="Type"/> are being exposed.
         /// </summary>
+#if EXPOSED_NULLABLE
+        private readonly object? value;
+#else
         private readonly object value;
+#endif
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Exposed"/> class. 
@@ -121,7 +125,14 @@ namespace ExposedObject
         /// </returns>
         public static dynamic New(Type type)
         {
-            return new Exposed(Activator.CreateInstance(type));
+            var instance = Activator.CreateInstance(type);
+
+            if (instance == null)
+            {
+                throw new ArgumentOutOfRangeException(nameof(type), "Activator.CreateInstance returned null.");
+            }
+
+            return new Exposed(instance);
         }
 
         /// <summary>

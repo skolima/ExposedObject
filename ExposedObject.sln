@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExposedObject", "ExposedObject\ExposedObject.csproj", "{04CE6B9D-FEC0-424A-B0BB-8A4D1E48F73E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExposedObject", "ExposedObject\ExposedObject.csproj", "{04CE6B9D-FEC0-424A-B0BB-8A4D1E48F73E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestSubjects", "TestSubjects\TestSubjects.csproj", "{4F9CC970-A5B4-455B-9733-B4D8605DCAAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestSubjects", "TestSubjects\TestSubjects.csproj", "{4F9CC970-A5B4-455B-9733-B4D8605DCAAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{2467EDA2-6977-4223-8F31-3ED726777D22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{2467EDA2-6977-4223-8F31-3ED726777D22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

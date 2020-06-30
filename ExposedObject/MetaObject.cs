@@ -91,7 +91,11 @@ namespace ExposedObject
 
             var type = exposed.SubjectType;
             var declaringType = type;
+#if EXPOSED_NULLABLE
+            MethodInfo? method;
+#else
             MethodInfo method;
+#endif
             do
             {
                 method = declaringType.GetMethod(binder.Name, GetBindingFlags(), null, argTypes, null);
@@ -177,7 +181,11 @@ namespace ExposedObject
         /// </exception>
         private MemberExpression GetMemberExpression(Expression self, string memberName)
         {
+#if EXPOSED_NULLABLE
+            MemberExpression? memberExpression = null;
+#else
             MemberExpression memberExpression = null;
+#endif
             var type = ((Exposed)Value).SubjectType;
             var @this = isStatic
                             ? null
