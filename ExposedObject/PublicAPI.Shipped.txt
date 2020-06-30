@@ -1,0 +1,5 @@
+﻿ExposedObject.Exposed
+override ExposedObject.Exposed.GetMetaObject(System.Linq.Expressions.Expression parameter) -> System.Dynamic.DynamicMetaObject
+static ExposedObject.Exposed.From(System.Type type) -> dynamic
+static ExposedObject.Exposed.From(object subject) -> dynamic
+static ExposedObject.Exposed.New(System.Type type) -> dynamic
