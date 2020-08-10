@@ -87,6 +87,9 @@ namespace ExposedObject
             {
                 argTypes[i] = args[i].LimitType;
                 argExps[i] = args[i].Expression;
+
+                if (args[i].Expression is ParameterExpression pe && pe.IsByRef)
+                    argTypes[i] = argTypes[i].MakeByRefType();
             }
 
             var type = exposed.SubjectType;
