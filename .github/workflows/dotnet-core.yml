@@ -16,4 +16,4 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --framework netcoreapp3.1 --no-restore
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
+      run: dotnet test  --configuration Release --framework netcoreapp3.1 --no-restore --verbosity normal
