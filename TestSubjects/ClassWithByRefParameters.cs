@@ -1,5 +1,4 @@
 ﻿// Author:
-// Leszek Ciesielski (skolima@gmail.com)
 // Manuel Josupeit-Walter (info@josupeit.com)
 //
 // (C) 2013 Cognifide
@@ -24,47 +23,26 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
+using System.Globalization;
 
-using ExposedObject;
+#pragma warning disable CA1822 // because we want to test instance methods
 
-using Xunit;
-
-namespace Tests
+namespace TestSubjects
 {
-    public class HiddenClassTest
+    public class ClassWithByRefParameters
     {
-        [Fact]
-        public void FieldTest()
+        public int PublicMethod(int param1, out string param2, in long param3, ref byte param4)
         {
-            dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
-            string password = exposed.password;
-            Assert.Null(password);
-
-            exposed.password = "TestValue";
-            password = exposed.password;
-            Assert.Equal("TestValue", password);
+            param2 = param3.ToString(CultureInfo.InvariantCulture);
+            param4 = unchecked((byte)param1);
+            return 0;
         }
 
-        [Fact]
-        public void MethodTest()
+        protected int ProtectedMethod(int param1, out string param2, in long param3, ref byte param4)
         {
-            dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
-            string password = exposed.GeneratePassword(8);
-
-            Assert.Equal(password, exposed.Password);
-        }
-
-        [Fact]
-        public void PropertyTest()
-        {
-            dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
-            int count = exposed.Countz;
-            Assert.Equal(0, count);
-
-            exposed.Countz = 9;
-            count = exposed.Countz;
-            Assert.Equal(9, count);
+            param2 = param3.ToString(CultureInfo.InvariantCulture);
+            param4 = unchecked((byte)param1);
+            return 0;
         }
     }
 }

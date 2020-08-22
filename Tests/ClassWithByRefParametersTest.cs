@@ -1,8 +1,7 @@
 ﻿// Author:
-// Leszek Ciesielski (skolima@gmail.com)
 // Manuel Josupeit-Walter (info@josupeit.com)
 //
-// (C) 2013 Cognifide
+// (C) 2011 Cognifide
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -24,47 +23,46 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-using System;
-
 using ExposedObject;
-
+using TestSubjects;
 using Xunit;
 
 namespace Tests
 {
-    public class HiddenClassTest
+    public class ClassWithByRefParametersTest
     {
         [Fact]
-        public void FieldTest()
+        public void PublicMethodTest()
         {
-            dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
-            string password = exposed.password;
-            Assert.Null(password);
+            var exposed = Exposed.From(new ClassWithByRefParameters());
 
-            exposed.password = "TestValue";
-            password = exposed.password;
-            Assert.Equal("TestValue", password);
+            var param1 = 123;
+            string param2 = null;
+            var param3 = 2937842L;
+            byte param4 = 111;
+
+            int result = exposed.PublicMethod(param1, ref param2, ref param3, ref param4);
+
+            Assert.Equal(0, result);
+            Assert.Equal("2937842", param2);
+            Assert.Equal(123, param4);
         }
 
         [Fact]
-        public void MethodTest()
+        public void ProtectedMethodTest()
         {
-            dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
-            string password = exposed.GeneratePassword(8);
+            var exposed = Exposed.From(new ClassWithByRefParameters());
 
-            Assert.Equal(password, exposed.Password);
-        }
+            var param1 = 123;
+            string param2 = null;
+            var param3 = 2937842L;
+            byte param4 = 111;
 
-        [Fact]
-        public void PropertyTest()
-        {
-            dynamic exposed = Exposed.New(Type.GetType("TestSubjects.HiddenClass, TestSubjects"));
-            int count = exposed.Countz;
-            Assert.Equal(0, count);
+            int result = exposed.ProtectedMethod(param1, ref param2, ref param3, ref param4);
 
-            exposed.Countz = 9;
-            count = exposed.Countz;
-            Assert.Equal(9, count);
+            Assert.Equal(0, result);
+            Assert.Equal("2937842", param2);
+            Assert.Equal(123, param4);
         }
     }
 }
