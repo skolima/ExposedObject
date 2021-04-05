@@ -29,11 +29,15 @@ using System.Globalization;
 
 namespace TestSubjects
 {
+#pragma warning disable CA1708 // Identifiers should differ by more than case
     public class ClassWithHiddenMethods
+#pragma warning restore CA1708 // Identifiers should differ by more than case
     {
         private int _count;
 
+#pragma warning disable IDE0051 // Remove unused private members
         private int Count { get { return _count; } set { _count = value; } }
+#pragma warning restore IDE0051 // Remove unused private members
 
 #pragma warning disable CA1051 // Do not declare visible instance fields
         protected string password;
@@ -54,10 +58,14 @@ namespace TestSubjects
         protected string GeneratePassword(int seed)
         {
             var random = new Random(seed);
+#pragma warning disable CA5394 // Do not use insecure randomness
             return password = random.Next().ToString(CultureInfo.InvariantCulture);
+#pragma warning restore CA5394 // Do not use insecure randomness
         }
 
+#pragma warning disable IDE0051 // Remove unused private members
         private void SetPassword(string newPassword)
+#pragma warning restore IDE0051 // Remove unused private members
         {
             password = newPassword;
         }
