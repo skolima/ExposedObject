@@ -127,7 +127,9 @@ namespace ExposedObject
         {
             var instance = Activator.CreateInstance(type);
 
+#pragma warning disable CA1508 // Avoid dead conditional code
             if (instance == null)
+#pragma warning restore CA1508 // Avoid dead conditional code
             {
                 throw new ArgumentOutOfRangeException(nameof(type), "Activator.CreateInstance returned null.");
             }
