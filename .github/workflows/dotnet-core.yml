@@ -14,6 +14,6 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --framework netcoreapp3.1 --no-restore
+      run: dotnet build --configuration Release --no-restore
     - name: Test
-      run: dotnet test  --configuration Release --framework netcoreapp3.1 --no-restore --verbosity normal
+      run: dotnet test  --configuration Release --no-restore --verbosity normal
