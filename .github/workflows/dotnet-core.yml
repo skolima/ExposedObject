@@ -19,6 +19,6 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release --no-restore -nowarn:CS8632
     - name: Test
-      run: dotnet test  --configuration Release --no-restore --verbosity normal
+      run: dotnet test  --configuration Release --no-restore --verbosity normal -nowarn:CS8632
