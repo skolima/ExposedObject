@@ -1,7 +1,5 @@
 # ExposedObject
 
-[![Build Status](https://travis-ci.org/skolima/ExposedObject.svg?branch=master)](https://travis-ci.org/skolima/ExposedObject)
-
 Fast dynamic wrapper for accessing hidden methods and fields of .Net objects. Uses 4.0 `dynamic` feature to allow seamless access to non-public object members. Facilitates white-box unit testing, exposes APIs that should be public and allows construction of elaborate hacks. Should not kill your cat provided you are careful. Available on [NuGet](http://nuget.org/packages/ExposedObject).
 
 ## Usage examples

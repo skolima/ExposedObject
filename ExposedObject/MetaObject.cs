@@ -25,7 +25,6 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -77,6 +76,11 @@ namespace ExposedObject
         /// </exception>
         public override DynamicMetaObject BindInvokeMember(InvokeMemberBinder binder, DynamicMetaObject[] args)
         {
+            if (Value == null)
+            {
+                throw new MissingMemberException();
+            }
+
             var self = Expression;
             var exposed = (Exposed)Value;
 
@@ -94,11 +98,7 @@ namespace ExposedObject
 
             var type = exposed.SubjectType;
             var declaringType = type;
-#if EXPOSED_NULLABLE
             MethodInfo? method;
-#else
-            MethodInfo method;
-#endif
             do
             {
                 method = declaringType.GetMethod(binder.Name, GetBindingFlags(), null, argTypes, null);
@@ -184,11 +184,12 @@ namespace ExposedObject
         /// </exception>
         private MemberExpression GetMemberExpression(Expression self, string memberName)
         {
-#if EXPOSED_NULLABLE
+            if (Value == null)
+            {
+                throw new MissingMemberException();
+            }
+
             MemberExpression? memberExpression = null;
-#else
-            MemberExpression memberExpression = null;
-#endif
             var type = ((Exposed)Value).SubjectType;
             var @this = isStatic
                             ? null

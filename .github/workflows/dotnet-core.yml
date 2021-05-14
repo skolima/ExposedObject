@@ -6,14 +6,19 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet: [ '3.1.x', '5.0.x' ]
 
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
+      with:
+          dotnet-version: ${{ matrix.dotnet }}
     - name: Install dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --configuration Release --framework netcoreapp3.1 --no-restore
+      run: dotnet build --configuration Release --no-restore -nowarn:CS8632
     - name: Test
-      run: dotnet test  --configuration Release --framework netcoreapp3.1 --no-restore --verbosity normal
+      run: dotnet test  --configuration Release --no-restore --verbosity normal -nowarn:CS8632
