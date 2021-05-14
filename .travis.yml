@@ -1,7 +1,0 @@
-language: csharp
-mono: none
-dist: xenial
-dotnet: 5.0
-script:
-  - dotnet build -c Release
-  - dotnet test -c Release Tests/Tests.csproj
